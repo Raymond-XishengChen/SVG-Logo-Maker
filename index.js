@@ -1,9 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Shape = require('./lib/shape.js');
-const Square = require('./lib/shape.js');
-const Circle = require('./lib/shape.js');
-const Triangle = require('./lib/shape.js');
+const {Square, Circle, Triangle} = require('./lib/shape')
 
 
 const questions = [
@@ -30,15 +27,15 @@ const questions = [
     },
 ];
 
-function confirmShape(data){
-    if (data.shape === 'Square') {
-        const confirmedShape = new Square (data.shapeColor, data.logoText, data.textColor);
+function confirmShape(response){
+    if (response.shape === 'Square') {
+        const confirmedSquare = new Square (response.shapeColor, response.logoText, response.textColor);
+        return confirmedSquare.drawShape()
+    } else if (response.shape === 'Circle') {
+        const confirmedShape = new Circle (response.shapeColor, response.logoText, response.textColor);
         return confirmedShape.drawShape()
-    } else if (data.shape === 'Circle') {
-        const confirmedShape = new Circle (data.shapeColor, data.logoText, data.textColor);
-        return confirmedShape.drawShape()
-    } else {
-        const confirmedShape = new Triangle (data.shapeColor, data.logoText, data.textColor);
+    } else if (response.shape === 'Triangle'){
+        const confirmedShape = new Triangle (response.shapeColor, response.logoText, response.textColor);
         return confirmedShape.drawShape()
     }
 }
@@ -50,8 +47,15 @@ function init(){
                 console.log("Please do not enter no more than 3 characters.")
                 init();
             }else {
-                confirmShape(response);
+                const svgData = confirmShape(response);
+                fs.writeFile('./examples/SVGlogo.svg', svgData, (err)=>{
+                    if (err){
+                        console.log(err);
+                    }
+                })
             }
         });
 
 }
+
+init();
