@@ -7,8 +7,16 @@ const questions = [
     {
         type: 'input',
         name: 'logoText',
-        message: 'Please enter the text that you want to appear on the SVG logo, up to three letters:'
+        message: 'Please enter the text that you want to appear on the SVG logo, up to three letters:',
+        validate: (logoText) => {
+            if (logoText.length > 3){
+                console.log('\n Please enter no more than 3 characters')
+            } else {
+                return true;
+            }
+        }
     },
+
     {
         type: 'input',
         name: 'textColor',
@@ -43,17 +51,14 @@ function confirmShape(response){
 function init(){
     inquirer.prompt(questions)
         .then ((response) => {
-            if(response.logoText.length > 3){
-                console.log("Please do not enter no more than 3 characters.")
-                init();
-            }else {
                 const svgData = confirmShape(response);
                 fs.writeFile('./examples/SVGlogo.svg', svgData, (err)=>{
                     if (err){
                         console.log(err);
+                    } else {
+                        console.log ('...Created SVG file under ./examples');
                     }
                 })
-            }
         });
 
 }
