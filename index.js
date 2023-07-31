@@ -41,6 +41,7 @@ const questions = [
 function confirmShape(response){
     if (response.shape === 'Square') {
         const confirmedShape = new Square (response.shapeColor, response.logoText, response.textColor);
+        console.log(confirmShape);
         return SVGHeader + confirmedShape.render() + confirmedShape.addText()
     } else if (response.shape === 'Circle') {
         const confirmedShape = new Circle (response.shapeColor, response.logoText, response.textColor);

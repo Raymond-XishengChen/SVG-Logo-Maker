@@ -5,10 +5,10 @@
   "main": "index.js",
   "directories": {
     "example": "examples",
-    "lib": "lib"
+    "lib": "ib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Raymond-XishengChen/SVG-Logo-Maker#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "jest": "^24.9.0"
   }
 }
