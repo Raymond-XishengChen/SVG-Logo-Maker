@@ -27,6 +27,7 @@ WHEN I open the `logo.svg` file in a browser
 THEN I am shown a 300x200 pixel image that matches the criteria I entered
 
 ## Walkthrough Video
-[Walkthrough Video](https://watch.screencastify.com/v/ij7IV8C3kivgorsjKHor)
+[Walkthrough Video](https://watch.screencastify.com/v/OREPBzBhNzni8Xy9PRyc)
 
-![](./Walkthrough/README_Generator_Walkthrough.gif)
+![](./lib/walkthrough_videos/SVGLogo_Maker_Walkthrough.gif)
+![](./lib/walkthrough_videos/SVGLogo_Maker_Walkthrough.webm)
