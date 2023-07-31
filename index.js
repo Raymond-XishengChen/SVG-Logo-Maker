@@ -1,6 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const {Square, Circle, Triangle} = require('./lib/shape')
+const SVGHeader = `<svg version="1.1"
+width="300" height="200"
+xmlns="http://www.w3.org/2000/svg">`;
 
 
 const questions = [
@@ -37,14 +40,14 @@ const questions = [
 
 function confirmShape(response){
     if (response.shape === 'Square') {
-        const confirmedSquare = new Square (response.shapeColor, response.logoText, response.textColor);
-        return confirmedSquare.drawShape()
+        const confirmedShape = new Square (response.shapeColor, response.logoText, response.textColor);
+        return SVGHeader + confirmedShape.render() + confirmedShape.addText()
     } else if (response.shape === 'Circle') {
         const confirmedShape = new Circle (response.shapeColor, response.logoText, response.textColor);
-        return confirmedShape.drawShape()
+        return SVGHeader + confirmedShape.render() + confirmedShape.addText()
     } else if (response.shape === 'Triangle'){
         const confirmedShape = new Triangle (response.shapeColor, response.logoText, response.textColor);
-        return confirmedShape.drawShape()
+        return SVGHeader + confirmedShape.render() + confirmedShape.addText()
     }
 }
 
